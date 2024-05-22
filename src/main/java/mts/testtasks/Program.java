@@ -60,7 +60,16 @@ public class Program {
                             accountDt.getId(), accountCt.getId(), payment);
                     return;
                 }
-                accountCt.transferAmount(payment);
+
+                result = false;
+
+                result = accountCt.transferAmount(payment);
+
+                if (!result) {
+                    logger.info("Проводка завершена  с ошибкой Счет Дт: {}, Счет Кт: {}, Сумма: {}",
+                            accountDt.getId(), accountCt.getId(), payment);
+                    return;
+                }
 
                 logger.info("Проводка завершена успешно Счет Дт: {}, Счет Кт: {}, Сумма: {}",
                         accountDt.getId(), accountCt.getId(), payment);
